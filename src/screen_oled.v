@@ -78,6 +78,9 @@ module screen_oled(
     
     reg [127:0] str_1, str_2, str_3, str_4;
     
+    reg refresh = 1;
+    reg count_update = 0;
+    
     wire disp_on_ready;
     wire disp_off_ready;
     wire toggle_disp_ready;
@@ -89,7 +92,7 @@ module screen_oled(
     wire dBtnC; // Center DPad Button tied to toggle_disp command 
     wire dBtnU; // Upper DPad Button tied to update without clear
     wire dBtnD; // Bottom DPad Button tied to update with clear
-
+    
     // Instantiate OLED controller
     OLEDCtrl m_OLEDCtrl (
         .clk                (clk),              
@@ -160,7 +163,7 @@ module screen_oled(
     assign led = update_ready; // display whether btnU, BtnD controls are available
     assign init_done = disp_off_ready | toggle_disp_ready | write_ready | update_ready; // parse ready signals for clarity
     assign init_ready = disp_on_ready;
-
+    //assign dBtnU = btnU;
    
     always @(posedge clk)
         case (state)
@@ -189,9 +192,15 @@ module screen_oled(
                     write_base_addr <= 'b0;
                     state <= WriteWait;
                 end else if (once == 1 && dBtnU == 1) begin
+                    once <= 0;
                     update_start <= 1'b1;
-                    update_clear <= 1'b0;
-                    state <= UpdateWait;
+                    update_clear <= 1'b0;                    
+                    state <= UpdateWait; 
+                end else if (once == 1 && refresh == 1) begin
+                    once <= 0;
+                    update_start <= 1'b1;
+                    update_clear <= 1'b0;                    
+                    state <= UpdateWait;                    
                 end else if (once == 1 && dBtnD == 1) begin
                     update_start <= 1'b1;
                     update_clear <= 1'b1;
@@ -234,4 +243,12 @@ module screen_oled(
             end
             default: state <= Idle;
         endcase
+        
+    always @(posedge clk)
+        if (count_update >= 10000000 - 1) begin
+            count_update <= 0;
+            refresh <= ~refresh;
+        end else begin
+            count_update <= count_update + 1;
+        end
 endmodule

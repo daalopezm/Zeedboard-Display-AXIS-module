@@ -42,9 +42,12 @@ module AXIS_screen_oled(
 );
     // Internal signals
     reg [127:0] str1, str2, str3, str4;
+    reg refresh = 0;
+    reg count_update = 0;
 
     // Handle AXIS transactions
     always @(posedge clk) begin
+        
         if (reset) begin
             str1 <= 128'b0;
             str2 <= 128'b0;
@@ -57,7 +60,7 @@ module AXIS_screen_oled(
             str3 <= s_axis_tdata_str3;
             str4 <= s_axis_tdata_str4;
         end
-
+        count_update <= count_update + 1;
     end
 
     // Instantiate the screen_oled module
