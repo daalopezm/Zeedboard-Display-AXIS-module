@@ -175,7 +175,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7c434d94</spirit:value>
+            <spirit:value>af6a641f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -489,11 +489,6 @@
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/zedboard_master.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
-        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>src/init_sequence_rom/init_sequence_rom.xci</spirit:name>
         <spirit:userFileType>xci</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
@@ -654,13 +649,13 @@
       <xilinx:xpmLibraries>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>22</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-07-21T00:36:39Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>27</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2024-07-22T22:57:49Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2024.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="168569c6"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="08102584"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="ada9671a"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="7650fb7f"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="a9a7ff66"/>
     </xilinx:packagingInfo>
