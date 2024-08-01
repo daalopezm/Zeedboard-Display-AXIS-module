@@ -33,7 +33,7 @@ module screen_oled(
     output oled_vbat,
     output oled_vdd,
     // output oled_cs, // used in Pmod OLED implementation
-    output [7:0] led,
+    output led,
     // New string inputs
     input [127:0] str1,
     input [127:0] str2,

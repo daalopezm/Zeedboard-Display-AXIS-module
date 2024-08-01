@@ -22,7 +22,7 @@
 
 module AXIS_screen_oled(
     input clk,
-    input reset,
+    input resetn,
     input [127:0] s_axis_tdata_str1,
     input [127:0] s_axis_tdata_str2,
     input [127:0] s_axis_tdata_str3,
@@ -38,7 +38,7 @@ module AXIS_screen_oled(
     output oled_res,
     output oled_vbat,
     output oled_vdd,
-    output [7:0] led
+    output led
 );
     // Internal signals
     reg [127:0] str1, str2, str3, str4;
@@ -48,11 +48,11 @@ module AXIS_screen_oled(
     // Handle AXIS transactions
     always @(posedge clk) begin
         
-        if (reset) begin
-            str1 <= 128'b0;
-            str2 <= 128'b0;
-            str3 <= 128'b0;
-            str4 <= 128'b0;
+        if (!resetn) begin
+            str1 <= s_axis_tdata_str1;
+            str2 <= s_axis_tdata_str2;
+            str3 <= s_axis_tdata_str3;
+            str4 <= s_axis_tdata_str4;
         end 
         if (s_axis_tvalid) begin
             str1 <= s_axis_tdata_str1;
